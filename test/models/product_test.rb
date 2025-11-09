@@ -46,7 +46,26 @@ class ProductTest < ActiveSupport::TestCase
     product = new_product("logo.svg", "image/svg+xml")
     assert_not product.valid?, "image/svg+xml must be invalid"
   end
-end
+
+  def create
+    @product = Product.new(product_params)
+
+    respond_to do |format|
+      if @product.save
+          format.html { redirect_to @product,
+            notice: "Product was successfully created." }
+          format.json { render :show, status: :created,
+            location: @product }
+      else
+        puts @product.errors.full_messages
+        format.html { render :new,
+            status: :unprocessable_entity }
+        format.json { render json: @product.errors,
+            status: unprocessable_entity }
+      end
+    end
+  end
+end    
 
 
 
