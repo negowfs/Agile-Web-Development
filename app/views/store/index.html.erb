@@ -14,7 +14,7 @@
       <% @products.each do |product| %>
         <% cache product do %>
           <li class="flex mb-6">
-            <%= image_tag(product.image_url, alt: product.title) if product.image_url.present? %>
+            <%= image_tag(product.image, alt: product.title) if product.image.present? %>
 
             <div>
               <h2 class="font-bold text-lg mb-3"><%= product.title %></h2>
@@ -29,7 +29,7 @@
                 <%= button_to "Add to Cart",
                       line_items_path(product_id: product),
                       form_class: "inline",
-                      class: "ml-4 rounded-lg py-1 px-2 text-white bg-green-600 hover:bg-green-700",
+                      class: "ml-4 rounded-lg text-white bg-green-700 hover:bg-green-800 cursor-pointer p-5",
                       data: { turbo: false } %>
               </div>
             </div>
