@@ -23,5 +23,11 @@ module Depot
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Ensure Propshaft is properly configured
+    config.assets.paths << Rails.root.join("app", "assets", "images")
+    config.assets.paths << Rails.root.join("app", "assets", "builds")
+    config.assets.paths << Rails.root.join("app", "javascript")
+
   end
 end
