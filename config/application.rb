@@ -28,6 +28,5 @@ module Depot
     config.assets.paths << Rails.root.join("app", "assets", "images")
     config.assets.paths << Rails.root.join("app", "assets", "builds")
     config.assets.paths << Rails.root.join("app", "javascript")
-
   end
 end

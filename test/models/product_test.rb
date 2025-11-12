@@ -65,9 +65,4 @@ class ProductTest < ActiveSupport::TestCase
       end
     end
   end
-end    
-
-
-
-
-
+end
