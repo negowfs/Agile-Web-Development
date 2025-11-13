@@ -1,20 +1,31 @@
 <div id="<%= dom_id cart %>">
-  <h2 class="font-bold text-lg mb-3">Your Cart</h2>
+  <div class="bg-white rounded p-4 shadow">
 
-  <table class="table-auto">
-    <%= render cart.line_items %>
+    <h2 class="font-bold text-lg mb-3">Your Cart</h2>
 
-    <tfoot>
-      <tr>
-        <th class="text-right pr-2 pt-2" colspan="3">Total</th>
-        <td class="text-right pt-2 font-bold border-t-2 border-black">
-          <%= number_to_currency(cart.total_price) %>
-        </td>
-      </tr>
-    </tfoot>
-  </table>
+    <table class="table-auto w-full">
+      <%= render(cart.line_items) %>
 
-  <%= button_to 'Empty cart', cart_path(cart),
-        method: :delete,
-        class: 'mt-4 rounded-lg py-1 px-2 text-white bg-green-600 cursor-pointer' %>
+      <tfoot>
+        <tr>
+          <th class="text-right pr-2 pt-2" colspan="3">Total</th>
+          <td class="text-right pt-2 font-bold border-t-2 border-black">
+            <%= number_to_currency(cart.total_price) %>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="flex flex-col mt-4 gap-2">
+      <%= button_to 'Empty cart',
+            cart,
+            method: :delete,
+            class: 'rounded-lg py-1 px-2 text-white bg-green-600 cursor-pointer' %>
+
+      <%= button_to 'Checkout',
+            new_order_path,
+            method: :get,
+            class: 'rounded-lg py-1 px-2 text-black bg-green-200 cursor-pointer' %>
+    </div>
+  </div>
 </div>

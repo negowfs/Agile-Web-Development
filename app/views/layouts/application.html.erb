@@ -19,31 +19,32 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
   </head>
 
   <body>
-    <header class="bg-green-700">
+    <header class="bg-green-700 text-white flex items-center gap-4 p-4">
       <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
-      <h1><%= @page_title %></h1>
+      <h1 class="text-2xl font-bold"><%= @page_title %></h1>
     </header>
 
+
     <section class="flex">
-        <nav class="bg-green-900 p-6">
-        <% if @cart and not @cart.line_items.empty? %>
-          <div id="cart" class="bg-white rounded p-2">
+        <nav class="bg-green-900 p-6 text-white">
+          <div id="cart" class="mb-6">
             <%= render @cart %>
           </div>
-        <% end %>
-                  
-          <ul class="test-gray-300 leading-8">
-            <li><a href="/">Home</></li>
+
+          <ul class="text-gray-300 leading-8">
+            <li><a href="/">Home</a></li>
             <li><a href="/questions">Questions</a></li>
             <li><a href="/news">News</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </nav>
+
 
       <main class="container mx-auto mt-4 px-5 flex">
         <%= yield %>
