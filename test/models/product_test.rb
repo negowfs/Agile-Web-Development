@@ -13,7 +13,7 @@ class ProductTest < ActiveSupport::TestCase
   test "product price most be positive" do
     product = Product.new(title: "My book Title",
                           description: "yyy")
-    product.image.attach(io: File.open("test/fixtures/files/lorem.jpeg"),
+    product.image.attach(io: File.open("test/fixtures/files/lorem.jpg"),
                           filename: "lorem.jpg", content_type: "image/jpeg")
     product.price = -1
     assert product.invalid?
@@ -65,9 +65,4 @@ class ProductTest < ActiveSupport::TestCase
       end
     end
   end
-end    
-
-
-
-
-
+end

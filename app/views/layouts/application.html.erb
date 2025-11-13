@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Depot" %></title>
+    <title><%= content_for(:title) || "Pragprog Book Online Store" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Depot">
@@ -19,13 +19,36 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+    <header class="bg-green-700 text-white flex items-center gap-4 p-4">
+      <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
+      <h1 class="text-2xl font-bold"><%= @page_title %></h1>
+    </header>
+
+
+    <section class="flex">
+        <nav class="bg-green-900 p-6 text-white">
+          <div id="cart" class="mb-6">
+            <%= render @cart %>
+          </div>
+
+          <ul class="text-gray-300 leading-8">
+            <li><a href="/">Home</a></li>
+            <li><a href="/questions">Questions</a></li>
+            <li><a href="/news">News</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+
+      <main class="container mx-auto mt-4 px-5 flex">
+        <%= yield %>
+      </main>
+    </section>
   </body>
 </html>

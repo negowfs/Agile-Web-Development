@@ -14,7 +14,6 @@ two:
 
 pragprog:
   title: The Pragmatic Programmer
-  description:
-    Your Journey To Mastery, 20th Anniversary Edition (2nd Edition)
+  description: Your Journey To Mastery, 20th Anniversary Edition (2nd Edition)
+  image: MyString
   price: 39.99
-  
