@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Your custom styles */
+@import "store.css";
+@import "line_items.css";
