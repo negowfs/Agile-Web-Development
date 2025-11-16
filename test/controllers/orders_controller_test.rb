@@ -4,12 +4,12 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @order = orders(:one)
   end
-  
+
   test "should get index" do
     get orders_url
     assert_response :success
   end
-  
+
   test "requires item in cart" do
     get new_order_url
     assert_redirected_to store_index_path
@@ -18,7 +18,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 
   test "should get new" do
     post line_items_url, params: { product_id: products(:pragprog).id }
-    
+
     get new_order_url
     assert_response :success
   end
@@ -53,5 +53,4 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to orders_url
   end
-
 end
