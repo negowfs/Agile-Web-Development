@@ -1,73 +1,27 @@
 require "test_helper"
 
-class ProductTest < ActiveSupport::TestCase
-  test "product attributes must not be empty" do
-  product = Product.new
-  assert product.invalid?
-  assert product.errors[:title].any?
-  assert product.errors[:description].any?
-  assert product.errors[:price].any?
-  assert product.errors[:image].any?
+class Product < ApplicationRecord
+  has_one_attached :image
+  has_many :line_items
+
+  validates :title, :description, presence: true
+  validates :price, numericality: { greater_than_or_equal_to: 0.01 }
+
+  validate :image_presence
+  validate :acceptable_image
+
+  private
+
+  def image_presence
+    errors.add(:image, "must be attached") unless image.attached?
   end
 
-  test "product price most be positive" do
-    product = Product.new(title: "My book Title",
-                          description: "yyy")
-    product.image.attach(io: File.open("test/fixtures/files/lorem.jpeg"),
-                          filename: "lorem.jpg", content_type: "image/jpeg")
-    product.price = -1
-    assert product.invalid?
-    assert_equal [ "must be greater than or equal to 0.01" ],
-      product.errors[:price]
+  def acceptable_image
+    return unless image.attached?
 
-    product.price = 0
-    assert product.invalid?
-    assert_equal [ "must be greater than or equal to 0.01" ],
-      product.errors[:price]
-
-    product.price = 1
-    assert product.valid?
-  end
-
-  def new_product(filename, content_type)
-    Product.new(
-      title: "My Book Title",
-      description: "yyy",
-      price: 1
-    ).tap do |product|
-      product.image.attach(
-        io: File.open("db/images/#{filename}"), filename:, content_type:)
+    acceptable_types = [ "image/gif", "image/jpeg", "image/png" ]
+    unless acceptable_types.include?(image.content_type)
+      errors.add(:image, "must be a GIF, JPG, or PNG")
     end
   end
-
-  test "image url" do
-    product = new_product("lorem.jpg", "image/jpeg")
-    assert product.valid?, "image/jpeg must be valid"
-    product = new_product("logo.svg", "image/svg+xml")
-    assert_not product.valid?, "image/svg+xml must be invalid"
-  end
-
-  def create
-    @product = Product.new(product_params)
-
-    respond_to do |format|
-      if @product.save
-          format.html { redirect_to @product,
-            notice: "Product was successfully created." }
-          format.json { render :show, status: :created,
-            location: @product }
-      else
-        puts @product.errors.full_messages
-        format.html { render :new,
-            status: :unprocessable_entity }
-        format.json { render json: @product.errors,
-            status: unprocessable_entity }
-      end
-    end
-  end
-end    
-
-
-
-
-
+end

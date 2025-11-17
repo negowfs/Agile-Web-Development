@@ -1,0 +1,80 @@
+/* Main layout */
+
+section {
+  display: flex;
+}
+
+nav {
+  width: 20em;
+  padding: 1em;
+  background: #115;
+  color: #fff;
+}
+
+nav h2 {
+  color: #cfc;
+  margin-top: 0;
+}
+
+nav ul {
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0.5em 0;
+}
+
+nav ul li a {
+  color: #cfc;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+main {
+  flex: 1;
+  padding: 1em;
+}
+
+header img {
+  float: left;
+  margin-right: 1em;
+}
+
+header h1 {
+  font-size: 200%;
+  margin: 0;
+  padding-top: 0.5em;
+}
+
+/* Cart */
+
+#cart {
+  background: #eef;
+  padding: 1em;
+  border-radius: 0.5em;
+}
+
+#cart table {
+  width: 100%;
+}
+
+#cart th {
+  text-align: right;
+}
+
+#cart .button_to button {
+  margin-top: .5em;
+}
+
+/* Forms */
+
+input, textarea, select {
+  width: 100%;
+  padding: .5em;
+  border-radius: .3em;
+  border: 1px solid #888;
+}
