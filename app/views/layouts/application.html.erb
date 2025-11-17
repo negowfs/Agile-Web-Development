@@ -34,7 +34,7 @@
     <section class="flex">
         <nav class="bg-green-900 p-6 text-white">
           <div id="cart" class="mb-6">
-            <%= render @cart %>
+            <%= render @cart if @cart.present? %>
           </div>
 
           <ul class="text-gray-300 leading-8">
