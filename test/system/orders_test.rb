@@ -12,7 +12,7 @@ class OrdersTest < ApplicationSystemTestCase
     assert has_no_field? "Expiration date"
     assert has_no_field? "PO number"
 
-    select "check", from: "Pay type"
+    select "Check", from: "Pay type"
 
     assert has_field? "Routing number"
     assert has_field? "Account number"
@@ -20,7 +20,7 @@ class OrdersTest < ApplicationSystemTestCase
     assert has_no_field? "Expiration date"
     assert has_no_field? "PO number"
 
-    select "credit_card", from: "Pay type"
+    select "Credit Card", from: "Pay type"
 
     assert has_no_field? "Routing number"
     assert has_no_field? "Account number"
@@ -28,7 +28,7 @@ class OrdersTest < ApplicationSystemTestCase
     assert has_field? "Expiration date"
     assert has_no_field? "PO number"
 
-    select "purchase_order", from: "Pay type"
+    select "Purchase Order", from: "Pay type"
 
     assert has_no_field? "Routing number"
     assert has_no_field? "Account number"
