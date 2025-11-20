@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS personalizado sempre dentro de layer! */
+
+@layer base {
+  body {
+    @apply bg-gray-100 text-gray-900;
+  }
+}
+
+@layer components {
+  header {
+    @apply bg-green-700 text-white flex items-center gap-4 p-4;
+  }
+
+  header h1 {
+    @apply text-2xl font-bold;
+  }
+
+  nav {
+    @apply bg-green-900 p-6 text-white;
+  }
+
+  nav ul li a {
+    @apply text-gray-300 hover:text-white;
+  }
+
+  main {
+    @apply container mx-auto mt-4 px-5 flex;
+  }
+
+  #cart {
+    @apply mb-6;
+  }
+}

@@ -1,0 +1,9 @@
+one:
+  cart: one
+  product: one
+  quantity: 1
+
+two:
+  cart: two
+  product: two
+  quantity: 2
