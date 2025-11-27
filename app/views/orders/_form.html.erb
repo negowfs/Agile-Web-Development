@@ -28,7 +28,7 @@
 
   <div data-controller="payment">
     <div class="my-5">
-      <%= form.label :pay_type %>
+      <%= form.label :pay_type, "Pay type" %>
       <%= form.select :pay_type,
       Order.pay_types.keys.map { |key| [key.titleize, key] },
       { prompt: 'Select a payment method' },
