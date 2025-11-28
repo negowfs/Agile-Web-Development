@@ -1,10 +1,7 @@
-Dear <%= @order.name %>
-
-Thank you for your order from The Pragmatic Store.
-
 You ordered the following items:
 
-<%= render @order.line_items %>
+<% @order.line_items.each do |item| %>
+  <%= item.quantity %> x <%= item.product.title %>
+<% end %>
 
-We'll send you a separete e-mail when your order ships.
-Your total is <%= number_to_currency(@order.line_items.sum(&:total_price)) %>.
+Your total is <%= number_to_currency(@order.total_price) %>.

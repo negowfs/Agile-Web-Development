@@ -1,15 +1,15 @@
-<h1>Oder#shipped</h1>
-
-<p>
-  <%= @greeting %>, find me in app/views/oder_mailer/shipped.html.erb
-</p>
-
 <h3>Pragmatic Order Shipped</h3>
 <p>
-  This is just to let you know that we've shipped your recent order:
+ This is just to let you know that we've shipped you recent order:
 </p>
 
 <table>
   <tr><th colspan="2">Qty</th><th>Description</th></tr>
-  <%= render @order.line_items %>
+  <% @order.line_items.each do |item| %>
+    <tr>
+      <td><%= item.quantity %></td>
+      <td>&times;</td>
+      <td><%= item.product.title %></td>
+    </tr>
+  <% end %>
 </table>

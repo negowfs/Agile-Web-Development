@@ -1,9 +1,9 @@
 one:
   cart: one
-  product: one
+  product: two
   quantity: 1
 
 two:
   cart: two
-  product: two
+  product: pragprog
   quantity: 2
