@@ -1,0 +1,193 @@
+<html><head><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style>
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Depot">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    
+
+    
+
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <link rel="stylesheet" href="/assets/application-63e93e7b.css" data-turbo-track="reload">
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-98b1414e.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-ad2c7b86.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-4b1e420e.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-1fc53fe7.js",
+    "@rails/actioncable": "/assets/actioncable.esm-e0ec9819.js",
+    "controllers/application": "/assets/controllers/application-3affb389.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-708796bd.js",
+    "controllers": "/assets/controllers/index-ee64e1f1.js",
+    "controllers/payment_controller": "/assets/controllers/payment_controller-af33a0de.js",
+    "channels/consumer": "/assets/channels/consumer-bf39ed12.js",
+    "channels": "/assets/channels/index-9982ff80.js",
+    "channels/products_channel": "/assets/channels/products_channel-ae52c772.js"
+  }
+}</script>
+<link rel="modulepreload" href="/assets/application-98b1414e.js">
+<link rel="modulepreload" href="/assets/turbo.min-ad2c7b86.js">
+<link rel="modulepreload" href="/assets/stimulus.min-4b1e420e.js">
+<link rel="modulepreload" href="/assets/stimulus-loading-1fc53fe7.js">
+<link rel="modulepreload" href="/assets/actioncable.esm-e0ec9819.js">
+<link rel="modulepreload" href="/assets/controllers/application-3affb389.js">
+<link rel="modulepreload" href="/assets/controllers/hello_controller-708796bd.js">
+<link rel="modulepreload" href="/assets/controllers/index-ee64e1f1.js">
+<link rel="modulepreload" href="/assets/controllers/payment_controller-af33a0de.js">
+<link rel="modulepreload" href="/assets/channels/consumer-bf39ed12.js">
+<link rel="modulepreload" href="/assets/channels/index-9982ff80.js">
+<link rel="modulepreload" href="/assets/channels/products_channel-ae52c772.js">
+<script type="module">import "application"</script>
+
+  <title>New order</title></head>
+
+  <body>
+    <header class="bg-green-700 text-white flex items-center gap-4 p-4">
+      <img alt="The Pragmatic Bookshelf" src="/assets/logo-b71c948a.svg">
+      <h1 class="text-2xl font-bold"></h1>
+    </header>
+
+
+    <section class="flex">
+        <nav class="bg-green-900 p-6 text-white">
+          <div id="cart" class="mb-6">
+            <div id="cart_980190963">
+  <h2 class="font-bold text-lg mb-3">Your Cart</h2>
+
+  <table class="table-auto w-full">
+      <tbody><tr>
+  <td class="text-right">1</td>
+  <td>×</td>
+  <td class="pr-2">
+    MyString
+  </td>
+  <td class="text-right font-bold">
+    $9.99
+  </td>
+</tr>
+
+
+    </tbody><tfoot>
+      <tr>
+        <th class="text-right pr-2 pt-2" colspan="3">Total</th>
+        <td class="text-right pt-2 font-bold border-t-2 border-black">
+          $9.99
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="flex mt-1">
+    <form class="button_to" method="post" action="/carts/980190963"><input type="hidden" name="_method" value="delete"><button class="ml-4 rounded-lg py-1 px-2 text-white bg-red-600 cursor-pointer" type="submit">Empty Cart</button></form>
+
+     <form class="button_to" method="get" action="/orders/new"><button class="ml-4 rounded-lg py-1 px-2 text-black bg-green-200 cursor-pointer" type="submit">Checkout</button></form>
+  </div>
+</div>
+
+          </div>
+
+          <ul class="text-gray-300 leading-8">
+            <li><a href="/">Home</a></li>
+            <li><a href="/questions">Questions</a></li>
+            <li><a href="/news">News</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+
+      <main class="container mx-auto mt-4 px-5 flex">
+        
+<div class="md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">New order</h1>
+
+  <form class="contents" action="/orders" accept-charset="UTF-8" method="post">
+
+  <div class="my-5">
+    <label for="order_name">Name</label>
+    <input class="block shadow-sm rounded-md border px-3 py-2 mt-2 w-full border-gray-400 focus:outline-blue-600" type="text" name="order[name]" id="order_name">
+  </div>
+
+  <div class="my-5">
+    <label for="order_address">Address</label>
+    <textarea rows="4" class="block shadow-sm rounded-md border px-3 py-2 mt-2 w-full border-gray-400 focus:outline-blue-600" name="order[address]" id="order_address"></textarea>
+  </div>
+
+  <div class="my-5">
+    <label for="order_email">Email</label>
+    <input class="input-fild" type="email" name="order[email]" id="order_email">
+  </div>
+
+  <div data-controller="payment">
+    <div class="my-5">
+      <label for="order_pay_type">Pay type</label>
+      <select data-payment-target="selection" data-action="payment#showAdditionalFields" class="input-field" name="order[pay_type]" id="order_pay_type"><option value="">Select a payment method</option>
+<option value="check">Check</option>
+<option value="credit_card">Credit Card</option>
+<option value="purchase_order">Purchase Order</option></select>
+    </div>
+
+    <fieldset data-payment-target="additionalFields" data-type="check">
+    <div class="my-5">
+        <label for="order_routing_number">Routing number</label>
+        <input class="input-field" type="text" name="order[routing_number]" id="order_routing_number">
+    </div>
+    
+    <div class="my-5">
+        <label for="order_account_number">Account number</label>
+        <input class="input-field" type="password" name="order[account_number]" id="order_account_number">
+    </div>
+</fieldset>
+
+    <fieldset data-payment-target="additionalFields" data-type="credit_card" hidden="" disabled="">
+    <div class="my-5">
+        <label for="order_credit_card_number">Credit card number</label>
+        <input class="input-field" type="password" name="order[credit_card_number]" id="order_credit_card_number">
+    </div>
+    
+    <div class="my-5">
+        <label for="order_expiration_date">Expiration date</label>
+        <input class="input-field" size="9" placeholder="e.g. 03/22" type="text" name="order[expiration_date]" id="order_expiration_date">
+    </div>
+</fieldset>
+    <fieldset data-payment-target="additionalFields" data-type="purchase_order" hidden="" disabled="">
+    <div class="my-5">
+        <label for="order_po_number">Po number</label>
+        <input class="input-field" type="number" name="order[po_number]" id="order_po_number">
+    </div>
+</fieldset>
+  </div>
+
+  <div class="inline">
+    <input type="submit" name="commit" value="Place Order" class="w-full sm:w-auto rounded-md
+        px-3.5 py-2.5 bg-green-200 hover:bg-blue-500 text-black
+        inline-block font-medium cursor-pointer" data-disable-with="Place Order">
+  </div>
+</form>
+
+  <a class="w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" href="/orders">Back to orders</a>
+</div>
+
+      </main>
+    </section>
+  
+
+</body></html>

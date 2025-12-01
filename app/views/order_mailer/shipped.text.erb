@@ -1,0 +1,7 @@
+Pragmatic Order Shipped
+
+This is just to let you know that we've shipped your recent order:
+
+<% @order.line_items.each do |item| %>
+  <%= item.quantity %> x <%= item.product.title %>
+<% end %>

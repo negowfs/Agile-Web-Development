@@ -1,0 +1,7 @@
+You ordered the following items:
+
+<% @order.line_items.each do |item| %>
+  <%= item.quantity %> x <%= item.product.title %>
+<% end %>
+
+Your total is <%= number_to_currency(@order.total_price) %>.
