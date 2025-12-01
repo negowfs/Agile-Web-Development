@@ -1,78 +1,27 @@
 require "test_helper"
 
-class LineItemsController < ApplicationController
-  include CurrentCart
-  before_action :set_cart, only: %i[ create ]
-  before_action :set_line_item, only: %i[ show edit update destroy ]
-
-  # GET /line_items
-  def index
-    @line_items = LineItem.all
+class LineItemsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @line_item = line_items(:one)
+    login_as users(:one)
   end
 
-  # GET /line_items/1
-  def show
+  test "should create line_item" do
+    assert_difference("LineItem.count") do
+      post line_items_url, params: { product_id: products(:ruby).id }
   end
 
-  # GET /line_items/new
-  def new
-    @line_item = LineItem.new
+
+    assert_redirected_to cart_url(assigns(:cart))
   end
 
-  # GET /line_items/1/edit
-  def edit
-  end
-
-  # POST /line_items
-  def create
-    product = Product.find(params[:product_id])
-    @line_item = @cart.add_product(product)
-
-    respond_to do |format|
-      if @line_item.save
-        format.turbo_stream do
-          @current_item = @line_item
-        end
-        format.html { redirect_to @line_item.cart }
-        format.json { render :show, status: :created, location: @line_item }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /line_items/1
-  def update
-    respond_to do |format|
-      if @line_item.update(line_item_params)
-        format.html { redirect_to @line_item, notice: "Line item was successfully updated." }
-        format.json { render :show, status: :ok, location: @line_item }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /line_items/1
-  def destroy
+  test "should destroy line_item" do
     cart = @line_item.cart
-    @line_item.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to cart, status: :see_other, notice: "Line item was successfully destroyed." }
-      format.json { head :no_content }
+    assert_difference("LineItem.count", -1) do
+      delete line_item_url(@line_item)
     end
+
+    assert_redirected_to cart_url(cart)
   end
-
-  private
-
-    def set_line_item
-      @line_item = LineItem.find(params[:id])
-    end
-
-    def line_item_params
-      params.expect(line_item: [ :product_id ])
-    end
 end

@@ -1,26 +1,24 @@
-class CartsController < ApplicationController
-  before_action :set_cart, only: %i[ show destroy ]
+require "test_helper"
 
-  def index
-    @carts = Cart.all
+class CartsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @cart = carts(:one)
+    login_as users(:one)
   end
 
-  def show
+  test "should show cart" do
+    get cart_url(@cart)
+    assert_response :success
   end
 
-  def destroy
-    @cart.destroy if @cart.id == session[:cart_id]
-    session[:cart_id] = nil
+  test "should destroy cart" do
+    post line_items_url, params: { product_id: products(:pragprog).id }
+    @cart = Cart.find(session[:cart_id])
 
-    respond_to do |format|
-      format.html { redirect_to store_index_url, notice: "Your cart is currently empty" }
-      format.json { head :no_content }
+    assert_difference("Cart.count", -1) do
+      delete cart_url(@cart)
     end
-  end
 
-  private
-
-  def set_cart
-    @cart = Cart.find(params[:id])
+    assert_redirected_to store_index_url
   end
 end

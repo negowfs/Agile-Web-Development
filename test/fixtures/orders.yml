@@ -4,7 +4,7 @@ one:
   name: Dave Thomas
   address: 123 Main Street
   email: dave@example.org
-  pay_type: check
+  pay_type: Check
 
 two:
   name: MyString

@@ -2,14 +2,9 @@ require "test_helper"
 
 class OrdersControllerTest < ActionDispatch::IntegrationTest
   setup do
-  @order = orders(:one)
-  @cart = Cart.create
-  @product = products(:one)
-  @cart.line_items.create(product: @product)
-
-  post line_items_url, params: { product_id: @product.id }
+    @order = orders(:one)
+    login_as users(:one)
   end
-
 
   test "should get new" do
     get new_order_url
@@ -17,18 +12,23 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create order" do
-    assert_difference("Order.count") do
-      post orders_url, params: {
-        order: {
-          name: "Test User",
-          address: "123 Test St",
-          email: "test@example.com",
-          pay_type: "check"
-        }
+    cart = carts(:one)
+    product = products(:one)
+    cart.line_items.create(product: product)
+
+    post orders_url, params: {
+      order: {
+        name: "Test User",
+        address: "123 Test St",
+        email: "test@example.com",
+        pay_type: "Check"
       }
-    end
+    }
 
     assert_redirected_to store_index_url
+    follow_redirect!
+
+    assert_equal 0, cart.reload.line_items.size
   end
 
   test "should show order" do
